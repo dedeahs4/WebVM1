@@ -79,14 +79,6 @@ jobs:
                 echo "terminate=true" >> $GITHUB_ENV
             fi
             rm pages_response
-
-        - name: Terminate run if error occurred.
-          run: |
-            if [[ $terminate == "true" ]]; then
-              gh run cancel ${{ github.run_id }}
-              gh run watch ${{ github.run_id }}
-            fi
-
   build:
     needs: guard_clause # Dependency
     runs-on: ubuntu-latest # Image to run the worker on.
